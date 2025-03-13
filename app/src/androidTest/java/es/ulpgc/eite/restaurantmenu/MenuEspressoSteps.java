@@ -13,8 +13,14 @@ import android.os.RemoteException;
 
 import androidx.test.uiautomator.UiDevice;
 
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 public class MenuEspressoSteps {
 
+    @Given("app start screen {string}")
     public void appStartScreen(String screen) {
 
         try {
@@ -26,31 +32,38 @@ public class MenuEspressoSteps {
         }
     }
 
+    @And("app show text {string} on section {string}")
     public void appShowTextOnSection(String text, String section) {
         int sectionId = getSectionId(section);
         onView(withId(sectionId)).check(matches(withText(text)));
     }
 
+    @And("app show price {string} on section {string}")
     public void appShowPriceOnSection(String price, String section) {
         int priceId = getSectionPriceId(section);
         onView(withId(priceId)).check(matches(withText(price)));
     }
 
+    /*
     public void appShowTextOnItem(String text, String item) {
         int itemId = getItemId(item);
         onView(withId(itemId)).check(matches(withText(text)));
     }
+    */
 
+    @And("app show price {string} on item {string}")
     public void appShowPriceOnItem(String price, String item) {
         int priceId = getItemPriceId(item);
         onView(withId(priceId)).check(matches(withText(price)));
     }
 
+    @When("user press section {string}")
     public void userPressSection(String section) {
         int sectionId = getPressedSectionId(section);
         onView(withId(sectionId)).perform(click());
     }
 
+    @When("user press item {string}")
     public void userPressItem(String item) {
         int itemId = getPressedItemId(item);
         onView(withId(itemId)).perform(click());
@@ -74,10 +87,12 @@ public class MenuEspressoSteps {
 
     }
 
+    @Then("app resume screen {string}")
     public void appResumeScreen(String screen) {
         appStartScreen(screen);
     }
 
+    @When("user press back on screen {string}")
     public void userPressBackOnScreen(String screen) {
         pressBack();
     }
