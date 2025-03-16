@@ -69,6 +69,7 @@ public class MenuEspressoSteps {
         onView(withId(itemId)).perform(click());
     }
 
+    @And("user rotate screen")
     public void userRotateScreen(int orientation) {
 
         try {

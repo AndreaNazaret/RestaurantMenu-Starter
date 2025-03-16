@@ -1,8 +1,7 @@
 Feature: Restaurant Menu
 
 
-  Scenario: Choose Starter
-
+  Scenario: T01 Choose Starter
     Given app start screen "Menu Sections"
     And app show text "Choose one..." on section "Starters"
     And app show price "0 euros" on section "Starters"
@@ -11,16 +10,12 @@ Feature: Restaurant Menu
     And app show text "Choose one..." on section "Desserts"
     And app show price "0 euros" on section "Desserts"
     And app show price "0 euros" on section "Total Price"
-
     When user press section "Starters"
-
     Then app start screen "Menu Items"
     And app show price "10 euros" on item "First Starter"
     And app show price "9 euros" on item "Second Starter"
 
-
-  Scenario: Choose Main Course
-
+  Scenario: T02 Choose Main Course
     Given app start screen "Menu Sections"
     And app show text "Choose one..." on section "Starters"
     And app show price "0 euros" on section "Starters"
@@ -29,16 +24,12 @@ Feature: Restaurant Menu
     And app show text "Choose one..." on section "Desserts"
     And app show price "0 euros" on section "Desserts"
     And app show price "0 euros" on section "Total Price"
-
     When user press section "Main Courses"
-
     Then app start screen "Menu Items"
     And app show price "15 euros" on item "First Main Course"
     And app show price "18 euros" on item "Second Main Course"
 
-
-  Scenario: Choose Dessert
-
+  Scenario: T03 Choose Dessert
     Given app start screen "Menu Sections"
     And app show text "Choose one..." on section "Starters"
     And app show price "0 euros" on section "Starters"
@@ -47,31 +38,15 @@ Feature: Restaurant Menu
     And app show text "Choose one..." on section "Desserts"
     And app show price "0 euros" on section "Desserts"
     And app show price "0 euros" on section "Total Price"
-
     When user press section "Desserts"
-
     Then app start screen "Menu Items"
     And app show price "7 euros" on item "First Dessert"
     And app show price "8 euros" on item "Second Dessert"
 
-
-  Scenario: Choose First Starter
-
+  Scenario: T04 Choose First Starter
     Given app start screen "Menu Sections"
-    And app show text "Choose one..." on section "Starters"
-    And app show price "0 euros" on section "Starters"
-    And app show text "Choose one..." on section "Main Courses"
-    And app show price "0 euros" on section "Main Courses"
-    And app show text "Choose one..." on section "Desserts"
-    And app show price "0 euros" on section "Desserts"
-    And app show price "0 euros" on section "Total Price"
     And user press section "Starters"
-    And app start screen "Menu Items"
-    And app show price "10 euros" on item "First Starter"
-    And app show price "9 euros" on item "Second Starter"
-
     When user press item "First Starter"
-
     Then app resume screen "Menu Sections"
     And app show text "First Starter" on section "Starters"
     And app show price "10 euros" on section "Starters"
@@ -80,3 +55,250 @@ Feature: Restaurant Menu
     And app show text "Choose one..." on section "Desserts"
     And app show price "0 euros" on section "Desserts"
     And app show price "10 euros" on section "Total Price"
+
+  Scenario: T05 Choose Second Starter
+    Given app start screen "Menu Sections"
+    And user press section "Starters"
+    When user press item "Second Starter"
+    Then app resume screen "Menu Sections"
+    And app show text "Second Starter" on section "Starters"
+    And app show price "9 euros" on section "Starters"
+    And app show text "Choose one..." on section "Main Courses"
+    And app show price "0 euros" on section "Main Courses"
+    And app show text "Choose one..." on section "Desserts"
+    And app show price "0 euros" on section "Desserts"
+    And app show price "9 euros" on section "Total Price"
+
+  Scenario: T06 Choose First Main Course
+    Given app start screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "First Main Course"
+    Then app resume screen "Menu Sections"
+    And app show text "Choose one..." on section "Starters"
+    And app show price "0 euros" on section "Starters"
+    And app show text "First Main Course" on section "Main Courses"
+    And app show price "15 euros" on section "Main Courses"
+    And app show text "Choose one..." on section "Desserts"
+    And app show price "0 euros" on section "Desserts"
+    And app show price "15 euros" on section "Total Price"
+
+  Scenario: T07 Choose Second Main Course
+    Given app start screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "Second Main Course"
+    Then app resume screen "Menu Sections"
+    And app show text "Choose one..." on section "Starters"
+    And app show price "0 euros" on section "Starters"
+    And app show text "Second Main Course" on section "Main Courses"
+    And app show price "18 euros" on section "Main Courses"
+    And app show text "Choose one..." on section "Desserts"
+    And app show price "0 euros" on section "Desserts"
+    And app show price "18 euros" on section "Total Price"
+
+  Scenario: T08 Choose First Dessert
+    Given app start screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "First Dessert"
+    Then app resume screen "Menu Sections"
+    And app show text "Choose one..." on section "Starters"
+    And app show price "0 euros" on section "Starters"
+    And app show text "Choose one..." on section "Main Courses"
+    And app show price "0 euros" on section "Main Courses"
+    And app show text "First Dessert" on section "Desserts"
+    And app show price "7 euros" on section "Desserts"
+    And app show price "7 euros" on section "Total Price"
+
+  Scenario: T09 Choose Second Dessert
+    Given app start screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "Second Dessert"
+    Then app resume screen "Menu Sections"
+    And app show text "Choose one..." on section "Starters"
+    And app show price "0 euros" on section "Starters"
+    And app show text "Choose one..." on section "Main Courses"
+    And app show price "0 euros" on section "Main Courses"
+    And app show text "Second Dessert" on section "Desserts"
+    And app show price "8 euros" on section "Desserts"
+    And app show price "8 euros" on section "Total Price"
+
+  Scenario: T10 Choose First Main Course and Second Dessert
+    Given app start screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "First Main Course"
+    Then app resume screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "Second Dessert"
+    Then app resume screen "Menu Sections"
+    And app show text "Choose one..." on section "Starters"
+    And app show price "0 euros" on section "Starters"
+    And app show text "First Main Course" on section "Main Courses"
+    And app show price "15 euros" on section "Main Courses"
+    And app show text "Second Dessert" on section "Desserts"
+    And app show price "8 euros" on section "Desserts"
+    And app show price "23 euros" on section "Total Price"
+
+  Scenario: T11 Choose First Starter and Second Main Course
+    Given app start screen "Menu Sections"
+    And user press section "Starters"
+    When user press item "First Starter"
+    Then app resume screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "Second Main Course"
+    Then app resume screen "Menu Sections"
+    And app show text "First Starter" on section "Starters"
+    And app show price "10 euros" on section "Starters"
+    And app show text "Second Main Course" on section "Main Courses"
+    And app show price "18 euros" on section "Main Courses"
+    And app show price "28 euros" on section "Total Price"
+
+  Scenario: T12 Choose First Starter and Second Dessert
+    Given app start screen "Menu Sections"
+    And user press section "Starters"
+    When user press item "First Starter"
+    Then app resume screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "Second Dessert"
+    Then app resume screen "Menu Sections"
+    And app show text "First Starter" on section "Starters"
+    And app show price "10 euros" on section "Starters"
+    And app show text "Second Dessert" on section "Desserts"
+    And app show price "8 euros" on section "Desserts"
+    And app show price "18 euros" on section "Total Price"
+
+  Scenario: T13 Choose First Main Course, First Dessert and First Starter
+    Given app start screen "Menu Sections"
+    And user press section "Starters"
+    When user press item "First Starter"
+    Then app resume screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "First Main Course"
+    Then app resume screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "First Dessert"
+    Then app resume screen "Menu Sections"
+    And app show text "First Starter" on section "Starters"
+    And app show price "10 euros" on section "Starters"
+    And app show text "First Main Course" on section "Main Courses"
+    And app show price "15 euros" on section "Main Courses"
+    And app show text "First Dessert" on section "Desserts"
+    And app show price "7 euros" on section "Desserts"
+    And app show price "32 euros" on section "Total Price"
+
+  Scenario: T14 Choose Second Starter, Second Main Course, Second Dessert
+    Given app start screen "Menu Sections"
+    And user press section "Starters"
+    When user press item "Second Starter"
+    Then app resume screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "Second Main Course"
+    Then app resume screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "Second Dessert"
+    Then app resume screen "Menu Sections"
+    And app show text "Second Starter" on section "Starters"
+    And app show price "9 euros" on section "Starters"
+    And app show text "Second Main Course" on section "Main Courses"
+    And app show price "18 euros" on section "Main Courses"
+    And app show text "Second Dessert" on section "Desserts"
+    And app show price "8 euros" on section "Desserts"
+    And app show price "35 euros" on section "Total Price"
+
+  Scenario: T15 Choose First Main Course and Back on Choose Dessert
+    Given app start screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "First Main Course"
+    Then app resume screen "Menu Sections"
+    And user press section "Desserts"
+    When user press back on screen "Menu Items"
+    Then app resume screen "Menu Sections"
+    And app show text "Choose one..." on section "Starters"
+    And app show price "0 euros" on section "Starters"
+    And app show text "First Main Course" on section "Main Courses"
+    And app show price "15 euros" on section "Main Courses"
+    And app show text "Choose one..." on section "Desserts"
+    And app show price "0 euros" on section "Desserts"
+    And app show price "15 euros" on section "Total Price"
+
+  Scenario: T16 Choose First Starter and Back on Choose Main Course
+    Given app start screen "Menu Sections"
+    And user press section "Starters"
+    When user press item "First Starter"
+    Then app resume screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press back on screen "Menu Items"
+    Then app resume screen "Menu Sections"
+    And app show text "First Starter" on section "Starters"
+    And app show price "10 euros" on section "Starters"
+    And app show text "Choose one..." on section "Main Courses"
+    And app show price "0 euros" on section "Main Courses"
+    And app show text "Choose one..." on section "Desserts"
+    And app show price "0 euros" on section "Desserts"
+    And app show price "10 euros" on section "Total Price"
+
+  Scenario: T17 Choose Second Dessert and Back on Choose Starter
+    Given app start screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "Second Dessert"
+    Then app resume screen "Menu Sections"
+    And user press section "Starters"
+    When user press back on screen "Menu Items"
+    Then app resume screen "Menu Sections"
+    And app show text "Choose one..." on section "Starters"
+    And app show price "0 euros" on section "Starters"
+    And app show text "Choose one..." on section "Main Courses"
+    And app show price "0 euros" on section "Main Courses"
+    And app show text "Second Dessert" on section "Desserts"
+    And app show price "8 euros" on section "Desserts"
+    And app show price "8 euros" on section "Total Price"
+
+  Scenario: T18 Choose First Main Course, Second Dessert and Rotate
+    Given app start screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "First Main Course"
+    Then app resume screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "Second Dessert"
+    Then app resume screen "Menu Sections"
+    And user rotate screen
+    Then app show text "Choose one..." on section "Starters"
+    And app show price "0 euros" on section "Starters"
+    And app show text "First Main Course" on section "Main Courses"
+    And app show price "15 euros" on section "Main Courses"
+    And app show text "Second Dessert" on section "Desserts"
+    And app show price "8 euros" on section "Desserts"
+    And app show price "23 euros" on section "Total Price"
+
+  Scenario: T19 Choose First Starter, Second Main Course and Rotate
+    Given app start screen "Menu Sections"
+    And user press section "Starters"
+    When user press item "First Starter"
+    Then app resume screen "Menu Sections"
+    And user press section "Main Courses"
+    When user press item "Second Main Course"
+    Then app resume screen "Menu Sections"
+    And user rotate screen
+    Then app show text "First Starter" on section "Starters"
+    And app show price "10 euros" on section "Starters"
+    And app show text "Second Main Course" on section "Main Courses"
+    And app show price "18 euros" on section "Main Courses"
+    And app show text "Choose one..." on section "Desserts"
+    And app show price "0 euros" on section "Desserts"
+    And app show price "28 euros" on section "Total Price"
+
+  Scenario: T20 Choose First Starter, Second Dessert and Rotate
+    Given app start screen "Menu Sections"
+    And user press section "Starters"
+    When user press item "First Starter"
+    Then app resume screen "Menu Sections"
+    And user press section "Desserts"
+    When user press item "Second Dessert"
+    Then app resume screen "Menu Sections"
+    And user rotate screen
+    Then app show text "First Starter" on section "Starters"
+    And app show price "10 euros" on section "Starters"
+    And app show text "Choose one..." on section "Main Courses"
+    And app show price "0 euros" on section "Main Courses"
+    And app show text "Second Dessert" on section "Desserts"
+    And app show price "8 euros" on section "Desserts"
+    And app show price "18 euros" on section "Total Price"
+
