@@ -1,8 +1,25 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id 'com.android.application' version '7.1.2' apply false
-    id 'com.android.library' version '7.1.2' apply false
+
+buildscript {
+    repositories {
+        google()     // Obligatorio para plugins de Android
+        mavenCentral() // Repositorio estándar
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1' // Versión compatible
+    }
 }
+
+plugins {
+
+    //id 'com.android.application' version '7.1.2' apply false
+    //id 'com.android.library' version '7.1.2' apply false
+
+    // Versiones actualizadas
+    id 'com.android.application' version '7.3.1' apply false
+    id 'com.android.library' version '7.3.1' apply false
+}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
