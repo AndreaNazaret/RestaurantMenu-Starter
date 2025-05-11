@@ -75,17 +75,24 @@ public class SectionsPresenter implements SectionsContract.Presenter {
     // Recuperamos los ítems seleccionados para actualizar la vista
     MenuItems selectedPrices = model.getSelectedPrices();
 
+    int totalPrice = 0;
+
     if (selectedPrices != null) {
       if (selectedPrices.itemsStarters != null && !selectedPrices.itemsStarters.isEmpty()) {
         state.itemStarters = selectedPrices.itemsStarters.get(0);
+        totalPrice += state.itemStarters.itemPrice;
       }
       if (selectedPrices.itemsMainCourses != null && !selectedPrices.itemsMainCourses.isEmpty()) {
         state.itemMainCourses = selectedPrices.itemsMainCourses.get(0);
+        totalPrice += state.itemMainCourses.itemPrice;
       }
       if (selectedPrices.itemsDesserts != null && !selectedPrices.itemsDesserts.isEmpty()) {
         state.itemDesserts = selectedPrices.itemsDesserts.get(0);
+        totalPrice += state.itemMainCourses.itemPrice;
       }
     }
+
+    state.priceMenu = totalPrice;
 
     // Actualizamos la vista con los nuevos valores de precio
     view.get().onDataUpdated(state);
@@ -99,6 +106,7 @@ public class SectionsPresenter implements SectionsContract.Presenter {
 
     // TODO: insert code if necessary
   }
+
 
   @Override
   public void onPauseCalled() {
