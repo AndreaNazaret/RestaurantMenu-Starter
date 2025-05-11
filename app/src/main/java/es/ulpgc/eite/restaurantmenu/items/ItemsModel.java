@@ -37,6 +37,6 @@ public class ItemsModel implements ItemsContract.Model {
   @Override
   public void onDataFromPreviousScreen(List<MenuItem> data) {
     // Log.e(TAG, "onDataFromPreviousScreen()");
-
+    this.data = data;
   }
 }

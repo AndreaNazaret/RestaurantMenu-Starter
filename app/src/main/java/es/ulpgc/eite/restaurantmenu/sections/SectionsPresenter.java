@@ -3,6 +3,8 @@ package es.ulpgc.eite.restaurantmenu.sections;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 import es.ulpgc.eite.restaurantmenu.app.AppMediator;
 import es.ulpgc.eite.restaurantmenu.app.ItemsToSectionsState;
@@ -34,10 +36,10 @@ public class SectionsPresenter implements SectionsContract.Presenter {
 
     // initialize the state 
     state = new SectionsState();
-    // TODO: insert code if necessary
 
     // call the model and update the state
     // TODO: insert code if necessary
+
 
   }
 
@@ -51,6 +53,9 @@ public class SectionsPresenter implements SectionsContract.Presenter {
 
     // update the model if is necessary
     // TODO: insert code if necessary
+    if (state == null) {
+      state = new SectionsState();
+    }
 
   }
 
@@ -101,20 +106,49 @@ public class SectionsPresenter implements SectionsContract.Presenter {
 
   @Override
   public void onStartersBtnClicked() {
+    Log.e(TAG, "onStartersBtnClicked()");
 
     // TODO: insert code if necessary
+    SectionsToItemsState newState = new SectionsToItemsState();
+    MenuItems menuData = model.getStoredData();
+
+    newState.itemsSection = menuData.itemsStarters;
+
+    passStateToNextScreen(newState);
+
+    view.get().navigateToNextScreen();
+
   }
 
   @Override
   public void onMainCoursesBtnClicked() {
+    Log.e(TAG, "onMainCoursesBtnClicked()");
 
     // TODO: insert code if necessary
+    SectionsToItemsState newState = new SectionsToItemsState();
+    MenuItems menuData = model.getStoredData();
+    newState.itemsSection = menuData.itemsMainCourses;
+
+    passStateToNextScreen(newState);
+
+    view.get().navigateToNextScreen();
+
   }
 
   @Override
   public void onDessertsBtnClicked() {
+    Log.e(TAG, "onDessertsBtnClicked()");
+
 
     // TODO: insert code if necessary
+    SectionsToItemsState newState = new SectionsToItemsState();
+    MenuItems menuData = model.getStoredData();
+    newState.itemsSection = menuData.itemsDesserts;
+
+    passStateToNextScreen(newState);
+
+    view.get().navigateToNextScreen();
+
   }
 
   private ItemsToSectionsState getStateFromNextScreen() {

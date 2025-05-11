@@ -38,12 +38,13 @@ public class ItemsPresenter implements ItemsContract.Presenter {
     // use passed state if is necessary
     SectionsToItemsState savedState = getStateFromPreviousScreen();
     if (savedState != null) {
-
       // update the model if is necessary
       // TODO: insert code if necessary
-
+      model.onDataFromPreviousScreen(savedState.itemsSection);
       // update the state if is necessary
       // TODO: insert code if necessary
+      state.items = model.getStoredData();
+      state.itemsSection = state.items;
 
     }
   }
@@ -54,9 +55,14 @@ public class ItemsPresenter implements ItemsContract.Presenter {
 
     // get the saved state
     // TODO: insert code if necessary
+    state = mediator.getItemsState();
+    if (state == null) {
+      state = new ItemsState();
+    }
 
     // update the model if is necessary
     // TODO: insert code if necessary
+    model.onRestartScreen(state.items);
   }
 
   @Override
@@ -65,6 +71,10 @@ public class ItemsPresenter implements ItemsContract.Presenter {
 
     // call the model and update the state
     // TODO: insert code if necessary
+
+    state.items = model.getStoredData();
+
+    state.itemsSection = state.items;
 
     // update the view
     view.get().onDataUpdated(state);
@@ -76,6 +86,13 @@ public class ItemsPresenter implements ItemsContract.Presenter {
     // Log.e(TAG, "onBackPressedCalled()");
 
     // TODO: insert code if necessary
+    ItemsToSectionsState newState = new ItemsToSectionsState();
+    newState.itemSection = state.selectedItem;
+
+    passStateToPreviousScreen(newState);
+
+    view.get().navigateToPreviousScreen();
+
   }
 
   @Override
@@ -95,12 +112,20 @@ public class ItemsPresenter implements ItemsContract.Presenter {
   public void onFirstBtnClicked() {
 
     // TODO: insert code if necessary
+    // Asignar el primer ítem como seleccionado
+    if (state.items != null && !state.items.isEmpty()) {
+      state.selectedItem = state.items.get(0);
+    }
   }
 
   @Override
   public void onSecondBtnClicked() {
 
     // TODO: insert code if necessary
+    // Asignar el segundo ítem como seleccionado
+    if (state.items != null && state.items.size() > 1) {
+      state.selectedItem = state.items.get(1);
+    }
   }
 
 
