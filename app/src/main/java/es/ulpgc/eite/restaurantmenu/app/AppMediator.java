@@ -58,7 +58,6 @@ public class AppMediator {
 
   public ItemsToSectionsState getItemsToSectionsState() {
     ItemsToSectionsState state= itemsToSectionsState;
-    itemsToSectionsState= null;
     return state;
   }
 

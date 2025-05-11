@@ -64,24 +64,32 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   public void onResumeCalled() {
     Log.e(TAG, "onResumeCalled()");
 
-    // use passed state if is necessary
-    ItemsToSectionsState savedState = getStateFromNextScreen();
-    if (savedState != null) {
-
-      // update the model if is necessary
-      // TODO: insert code if necessary
-
-      // update the state if is necessary
-      // TODO: insert code if necessary
-
-    }
-
-    // call the model and update the state
     // TODO: insert code if necessary
 
+    ItemsToSectionsState savedState = getStateFromNextScreen();
+    if (savedState != null && savedState.itemSection != null) {
+      // Guardamos directamente los 3 ítems en el modelo
+      model.onDataFromPreviousScreen(savedState.itemSection);
+    }
 
-    // update the view
+    // Recuperamos los ítems seleccionados para actualizar la vista
+    MenuItems selectedPrices = model.getSelectedPrices();
+
+    if (selectedPrices != null) {
+      if (selectedPrices.itemsStarters != null && !selectedPrices.itemsStarters.isEmpty()) {
+        state.itemStarters = selectedPrices.itemsStarters.get(0);
+      }
+      if (selectedPrices.itemsMainCourses != null && !selectedPrices.itemsMainCourses.isEmpty()) {
+        state.itemMainCourses = selectedPrices.itemsMainCourses.get(0);
+      }
+      if (selectedPrices.itemsDesserts != null && !selectedPrices.itemsDesserts.isEmpty()) {
+        state.itemDesserts = selectedPrices.itemsDesserts.get(0);
+      }
+    }
+
+    // Actualizamos la vista con los nuevos valores de precio
     view.get().onDataUpdated(state);
+
 
   }
 
@@ -112,6 +120,12 @@ public class SectionsPresenter implements SectionsContract.Presenter {
     SectionsToItemsState newState = new SectionsToItemsState();
     MenuItems menuData = model.getStoredData();
 
+    if (menuData.itemsStarters != null) {
+      for (MenuItem item : menuData.itemsStarters) {
+        item.itemSection = MenuSection.Starters;
+      }
+    }
+
     newState.itemsSection = menuData.itemsStarters;
 
     passStateToNextScreen(newState);
@@ -127,6 +141,13 @@ public class SectionsPresenter implements SectionsContract.Presenter {
     // TODO: insert code if necessary
     SectionsToItemsState newState = new SectionsToItemsState();
     MenuItems menuData = model.getStoredData();
+
+    if (menuData.itemsMainCourses != null) {
+      for (MenuItem item : menuData.itemsMainCourses) {
+        item.itemSection = MenuSection.MainCourses;
+      }
+    }
+
     newState.itemsSection = menuData.itemsMainCourses;
 
     passStateToNextScreen(newState);
@@ -143,6 +164,13 @@ public class SectionsPresenter implements SectionsContract.Presenter {
     // TODO: insert code if necessary
     SectionsToItemsState newState = new SectionsToItemsState();
     MenuItems menuData = model.getStoredData();
+
+    if (menuData.itemsDesserts != null) {
+      for (MenuItem item : menuData.itemsDesserts) {
+        item.itemSection = MenuSection.Desserts;
+      }
+    }
+
     newState.itemsSection = menuData.itemsDesserts;
 
     passStateToNextScreen(newState);

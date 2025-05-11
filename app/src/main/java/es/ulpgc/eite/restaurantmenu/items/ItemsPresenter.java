@@ -86,10 +86,6 @@ public class ItemsPresenter implements ItemsContract.Presenter {
     // Log.e(TAG, "onBackPressedCalled()");
 
     // TODO: insert code if necessary
-    ItemsToSectionsState newState = new ItemsToSectionsState();
-    newState.itemSection = state.selectedItem;
-
-    passStateToPreviousScreen(newState);
 
     view.get().navigateToPreviousScreen();
 
@@ -115,6 +111,14 @@ public class ItemsPresenter implements ItemsContract.Presenter {
     // Asignar el primer ítem como seleccionado
     if (state.items != null && !state.items.isEmpty()) {
       state.selectedItem = state.items.get(0);
+
+
+      ItemsToSectionsState newState = new ItemsToSectionsState();
+      newState.itemSection = state.selectedItem;
+
+      passStateToPreviousScreen(newState);
+
+      view.get().navigateToPreviousScreen();
     }
   }
 
@@ -125,6 +129,13 @@ public class ItemsPresenter implements ItemsContract.Presenter {
     // Asignar el segundo ítem como seleccionado
     if (state.items != null && state.items.size() > 1) {
       state.selectedItem = state.items.get(1);
+
+      ItemsToSectionsState newState = new ItemsToSectionsState();
+      newState.itemSection = state.selectedItem;
+
+      passStateToPreviousScreen(newState);
+
+      view.get().navigateToPreviousScreen();
     }
   }
 

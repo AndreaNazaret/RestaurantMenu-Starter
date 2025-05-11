@@ -2,6 +2,7 @@ package es.ulpgc.eite.restaurantmenu.sections;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.restaurantmenu.data.MenuItem;
 import es.ulpgc.eite.restaurantmenu.data.MenuItems;
 
 /**
@@ -48,7 +49,9 @@ public interface SectionsContract {
 
     void onRestartScreen(MenuItems data);
 
-    void onDataFromPreviousScreen(MenuItems data);
+    public MenuItems getSelectedPrices();
+
+    void onDataFromPreviousScreen(MenuItem data);
   }
 
 }

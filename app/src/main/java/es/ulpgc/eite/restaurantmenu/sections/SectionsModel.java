@@ -15,6 +15,9 @@ public class SectionsModel implements SectionsContract.Model {
 
   private MenuItems data;
 
+  private MenuItems selectedPrices = new MenuItems();
+
+
   public SectionsModel() {
 
     List<MenuItem> itemsStarters = new ArrayList<>();
@@ -29,7 +32,7 @@ public class SectionsModel implements SectionsContract.Model {
     itemStarters.itemPrice = 9;
     itemsStarters.add(itemStarters);
 
-    List<MenuItem> itemsMainCourses= new ArrayList<>();
+    List<MenuItem> itemsMainCourses = new ArrayList<>();
 
     MenuItem itemMainCourses = new MenuItem();
     itemMainCourses.itemName = "First Main Course";
@@ -41,7 +44,7 @@ public class SectionsModel implements SectionsContract.Model {
     itemMainCourses.itemPrice = 18;
     itemsMainCourses.add(itemMainCourses);
 
-    List<MenuItem> itemsDesserts= new ArrayList<>();
+    List<MenuItem> itemsDesserts = new ArrayList<>();
 
     MenuItem itemDesserts = new MenuItem();
     itemDesserts.itemName = "First Dessert";
@@ -55,8 +58,8 @@ public class SectionsModel implements SectionsContract.Model {
 
     data = new MenuItems();
     data.itemsDesserts = itemsDesserts;
-    data.itemsMainCourses=itemsMainCourses;
-    data.itemsStarters=itemsStarters;
+    data.itemsMainCourses = itemsMainCourses;
+    data.itemsStarters = itemsStarters;
   }
 
 
@@ -64,6 +67,11 @@ public class SectionsModel implements SectionsContract.Model {
   public MenuItems getStoredData() {
     // Log.e(TAG, "getStoredData()");
     return data;
+  }
+
+  @Override
+  public MenuItems getSelectedPrices() {
+    return selectedPrices;
   }
 
   @Override
@@ -77,7 +85,24 @@ public class SectionsModel implements SectionsContract.Model {
   }
 
   @Override
-  public void onDataFromPreviousScreen(MenuItems data) {
+  public void onDataFromPreviousScreen(MenuItem data) {
     // Log.e(TAG, "onDataFromPreviousScreen()");
+    if (data != null && data.itemSection != null) {
+      switch (data.itemSection) {
+        case Starters:
+          selectedPrices.itemsStarters = new ArrayList<>();
+          selectedPrices.itemsStarters.add(data);
+          break;
+        case MainCourses:
+          selectedPrices.itemsMainCourses = new ArrayList<>();
+          selectedPrices.itemsMainCourses.add(data);
+          break;
+        case Desserts:
+          selectedPrices.itemsDesserts = new ArrayList<>();
+          selectedPrices.itemsDesserts.add(data);
+          break;
+      }
+    }
+
   }
 }
