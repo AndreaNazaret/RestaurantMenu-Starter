@@ -75,6 +75,10 @@ public class SectionsModel implements SectionsContract.Model {
   }
 
   @Override
+  public void setSelectedPrices(MenuItems prices) {
+    selectedPrices = prices;
+  }
+  @Override
   public void onRestartScreen(MenuItems data) {
     // Log.e(TAG, "onRestartScreen()");
   }

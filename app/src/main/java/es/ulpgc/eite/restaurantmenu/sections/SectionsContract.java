@@ -45,6 +45,8 @@ public interface SectionsContract {
   interface Model {
     MenuItems getStoredData();
 
+    public void setSelectedPrices(MenuItems prices);
+
     void onDataFromNextScreen(MenuItems data);
 
     void onRestartScreen(MenuItems data);

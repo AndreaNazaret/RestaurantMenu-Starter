@@ -57,6 +57,10 @@ public class SectionsPresenter implements SectionsContract.Presenter {
       state = new SectionsState();
     }
 
+    model.setSelectedPrices(mediator.getSelectedPrices());
+
+    view.get().onDataUpdated(state);
+
   }
 
 
@@ -88,7 +92,7 @@ public class SectionsPresenter implements SectionsContract.Presenter {
       }
       if (selectedPrices.itemsDesserts != null && !selectedPrices.itemsDesserts.isEmpty()) {
         state.itemDesserts = selectedPrices.itemsDesserts.get(0);
-        totalPrice += state.itemMainCourses.itemPrice;
+        totalPrice += state.itemDesserts.itemPrice;
       }
     }
 
@@ -113,6 +117,8 @@ public class SectionsPresenter implements SectionsContract.Presenter {
     Log.e(TAG, "onPauseCalled()");
 
     mediator.setSectionsState(state);
+
+    mediator.setSelectedPrices(model.getSelectedPrices());
   }
 
   @Override

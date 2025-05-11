@@ -1,5 +1,6 @@
 package es.ulpgc.eite.restaurantmenu.app;
 
+import es.ulpgc.eite.restaurantmenu.data.MenuItems;
 import es.ulpgc.eite.restaurantmenu.items.ItemsState;
 import es.ulpgc.eite.restaurantmenu.sections.SectionsState;
 
@@ -13,6 +14,8 @@ public class AppMediator {
 
   private SectionsState sectionsState;
   private ItemsState itemsState;
+
+  private MenuItems selectedPrices;
 
   private SectionsToItemsState sectionsToItemsState;
   private ItemsToSectionsState itemsToSectionsState;
@@ -48,6 +51,11 @@ public class AppMediator {
     sectionsState = state;
   }
 
+  public void setSelectedPrices(MenuItems prices) {
+    selectedPrices = prices;
+  }
+
+
   public void setItemsState(ItemsState state) {
     itemsState = state;
   }
@@ -69,5 +77,9 @@ public class AppMediator {
     SectionsToItemsState state=sectionsToItemsState;
     sectionsToItemsState=null;
     return state;
+  }
+
+  public MenuItems getSelectedPrices() {
+    return selectedPrices;
   }
 }
